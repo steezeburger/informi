@@ -70,6 +70,9 @@ to generate your back-end endpoint boiler-plate (if you need a back-end).
 - package generator
 - light, mnml theme
 
+## Screenshot
+![screenshot](http://i.imgur.com/IzSU1AH.jpg)
+
 ### Resources
 
 I couldn't have done this without the help of the following resources:
