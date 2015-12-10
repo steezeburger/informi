@@ -10,8 +10,6 @@ angular
   function WeatherCtrl($scope, $http, WeatherData) {
     var vm = this;
 
-    console.log(WeatherData);
-
     WeatherData
       .getWeatherPacket()
       .then((wp) => {

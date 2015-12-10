@@ -30,6 +30,9 @@ require('./config/socketio')(socketio);
 require('./config/express')(app);
 require('./routes')(app);
 
+// Cron
+require('./api/weather/weather.cron')();
+
 // Start server
 function startServer() {
   server.listen(config.port, config.ip, function() {
