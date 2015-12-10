@@ -1,19 +1,33 @@
+/* jshint latedef:false */
+
 'use strict';
 
-angular.module('informiApp')
-  .controller('WeatherCtrl', function ($scope, $http) {
-    $scope.message = 'Hello';
+angular
+  .module('informiApp')
+  .controller('WeatherCtrl', WeatherCtrl);
 
-    $http.get('http://api.openweathermap.org/data/2.5/weather?q=oklahomacity&APPID=2a37ed488b0ff33b9b15529a619c5963')
-      .then((res) => {
-        $scope.description = {};
-        $scope.description.short = res.data.weather[0].main;
-        $scope.description.long = res.data.weather[0].description;
-        $scope.temperature = ktof(res.data.main.temp);
+
+  function WeatherCtrl($scope, $http, WeatherData) {
+    var vm = this;
+
+    console.log(WeatherData);
+
+    WeatherData
+      .getWeatherPacket()
+      .then((wp) => {
+        vm.name = wp.name;
+        vm.description = {
+          short: wp.weather[0].main,
+          long: wp.weather[0].description
+        };
+        vm.temperature = ktof(wp.main.temp);
+      })
+      .catch((err) => {
+        console.log(err);
       });
 
     function ktof(kelvin) {
       return Math.round( ((kelvin - 273.15)*9/5)+32 );
     }
 
-  });
+  } // end ctrl

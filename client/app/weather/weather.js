@@ -6,6 +6,7 @@ angular.module('informiApp')
       .state('weather', {
         url: '/weather',
         templateUrl: 'app/weather/weather.html',
-        controller: 'WeatherCtrl'
+        controller: 'WeatherCtrl',
+        controllerAs: 'vm'
       });
   });
