@@ -20,11 +20,11 @@ module.exports = function() {
 function WeatherCron() {
   console.log('weather cron brah');
   // grab some weather info and save it
-  request(weatherURL, function (err, res, body) {
+  request(weatherURL, (err, res, body) => {
     if(err) return console.log(err);
+    // body is a string
     body = JSON.parse(body);
-    console.log(body);
-    console.log(body.main.temp);
+    // stuff this obj with the values we want
     var wp = {};
     wp.name = body.name;
     wp.city_id = body.id;
@@ -32,11 +32,11 @@ function WeatherCron() {
     wp.description = {};
     wp.description.short = body.weather[0].main;
     wp.description.long = body.weather[0].description;
-
+    // create new weather object and save it
     var WeatherPacket = new Weather(wp);
     WeatherPacket.save((err) => {
       if(err) console.log(err);
-    })
+    });
   });
 }
 
